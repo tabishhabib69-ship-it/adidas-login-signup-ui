@@ -5,6 +5,8 @@ import 'package:ecommerce/screens/HomE_screen.dart';
 import 'package:ecommerce/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'package:ecommerce/Reusable_style/appStyles.dart';
+
 class Login extends StatefulWidget {
   const new({super.key});
 
@@ -13,6 +15,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final TextEditingController emailcontroller = TextEditingController();
+  final TextEditingController passwordcontroller = TextEditingController();
+  String email = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,21 +42,17 @@ class _LoginState extends State<Login> {
                   child: Column(
                     children: [
                       SizedBox(height: 10),
-                      Text(
-                        "Welcome Back",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      Text("Welcome Back", style: Appstyles.textstyles),
                       SizedBox(height: 10),
                       CForm(
+                        controller: emailcontroller,
                         labeltext: "Email",
                         hinttext: "e.g Your@gmail.com",
                         prefixicon: Icons.email_outlined,
                       ),
                       SizedBox(height: 10),
                       CForm(
+                        controller: passwordcontroller,
                         labeltext: "Password",
                         hinttext: "ABC123&&",
                         prefixicon: Icons.password_outlined,

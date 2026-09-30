@@ -3,21 +3,23 @@ import 'package:flutter/material.dart';
 enum Btntype { elevated, icon, text }
 
 class Btn extends StatefulWidget {
-  final String name;
+  final String? name;
   final Color? bclr;
   final Widget nextscreen;
   final Color? tclr;
   final double? radious;
-  final Btntype type;
+  final Btntype? type;
+  final IconData? icontype;
 
   const Btn({
     super.key,
-    required this.name,
+    this.name,
     this.bclr,
     required this.nextscreen,
     this.tclr,
     this.radious,
-    required this.type,
+    this.type,
+    this.icontype,
   });
 
   @override
@@ -42,7 +44,7 @@ class _BtnState extends State<Btn> {
           );
         },
         child: Text(
-          widget.name,
+          widget.name ?? "",
           style: TextStyle(color: widget.tclr, fontWeight: FontWeight.bold),
         ),
       );
@@ -57,13 +59,21 @@ class _BtnState extends State<Btn> {
           );
         },
         child: Text(
-          widget.name,
+          widget.name ?? "",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             color: Colors.black,
             decoration: TextDecoration.underline,
           ),
         ),
+      );
+    }
+    if (widget.type == Btntype.icon) {
+      return IconButton(
+        onPressed: () {
+          print("hello");
+        },
+        icon: Icon(widget.icontype),
       );
     }
     return SizedBox(height: 2);
